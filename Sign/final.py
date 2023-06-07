@@ -81,7 +81,7 @@ while True:
 
     ret, frame = cap.read()
 
-    H, W, _ = frame.shape
+    H, W = frame.shape
 
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
