@@ -8,8 +8,8 @@ import pyttsx3
 import streamlit as st
 import os
 
-model_dict1 = pickle.load(open(os.getcwd()+'/model1.p', 'rb'))
-model_dict2 = pickle.load(open(os.getcwd()+'./model2.p', 'rb'))
+model_dict1 = pickle.load(open(os.getcwd()+'/Sign/model1.p', 'rb'))
+model_dict2 = pickle.load(open(os.getcwd()+'/Sign/model2.p', 'rb'))
 # model_dict3 = pickle.load(open('./model3.p', 'rb'))
 model1 = model_dict1['model1']
 model2 = model_dict2['model2']
