@@ -35,7 +35,7 @@ st.subheader('This web app is used to recognise sign language gestures and conve
 canvas = st.image([])
 
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Initialize variables for gesture tracking
 current_gesture = None
