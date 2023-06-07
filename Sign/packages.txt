@@ -1,1 +1,2 @@
 libgl-dev
+espeak
