@@ -7,6 +7,7 @@ import numpy as np
 import pyttsx3
 import streamlit as st
 import os
+import streamlit_webrtc as webrtc
 
 model_dict1 = pickle.load(open(os.getcwd()+'/Sign/model1.p', 'rb'))
 model_dict2 = pickle.load(open(os.getcwd()+'/Sign/model2.p', 'rb'))
@@ -35,7 +36,7 @@ st.subheader('This web app is used to recognise sign language gestures and conve
 canvas = st.image([])
 
 
-cap = cv2.VideoCapture(1)
+video_source = webrtc.VideoTransformerBase(source=webrtc.VideoCaptureDevice(index=0))
 
 # Initialize variables for gesture tracking
 current_gesture = None
@@ -79,7 +80,7 @@ while True:
     x_ = []
     y_ = []
 
-    ret, frame = cap.read()
+    frame = video_source.recv()
     if frame is None:
         continue
     H, W,_= frame.shape
@@ -158,12 +159,12 @@ while True:
                     gesture_start_time = time.time()
 
     # Display the frame in the Streamlit canvas
-    canvas.image(frame, channels="BGR")
+    canvas.webrtc_streamer(key="video", video_transformer_factory=lambda: video_source)
 
     # Break the loop if 'q' key is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 
-cap.release()
+video_source.close()
 cv2.destroyAllWindows()
