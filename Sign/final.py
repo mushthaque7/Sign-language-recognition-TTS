@@ -80,8 +80,9 @@ while True:
     y_ = []
 
     ret, frame = cap.read()
-
-    H, W = frame.shape
+    if frame is None:
+        continue
+    H, W,_= frame.shape
 
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
